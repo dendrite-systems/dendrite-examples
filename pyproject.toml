@@ -4,16 +4,39 @@ version = "0.1.0"
 description = "A few examples of how Dendrite can be used to set up automations as well as Web AI agents."
 authors = ["charlesmaddock <charles@digitalungdom.se>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"
-openpyxl = "^3.1.5"
-openai = "^1.43.0"
-anthropic = "^0.34.1"
-dendrite-sdk = "^0.1.0"
-poetry-plugin-export = "^1.8.0"
-
+dendrite-sdk = "^0.2.0"
+python-dotenv = "^1.0.1"
+pydantic = "^2.9.2"
+asyncio = "^3.4.3"
+langchain = "^0.3.1"
+langgraph = "^0.2.31"
+langchain-anthropic = "^0.2.1"
+langchain-core = "^0.3.7"
+langchain-community = "^0.3.1"
+requests = "^2.32.3"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    # directories
+    \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | build
+    | dist
+)/
+'''
