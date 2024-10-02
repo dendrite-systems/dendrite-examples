@@ -1460,6 +1460,30 @@ files = [
 ]
 
 [[package]]
+name = "openai"
+version = "1.51.0"
+description = "The official Python library for the openai API"
+optional = false
+python-versions = ">=3.7.1"
+files = [
+    {file = "openai-1.51.0-py3-none-any.whl", hash = "sha256:d9affafb7e51e5a27dce78589d4964ce4d6f6d560307265933a94b2e3f3c5d2c"},
+    {file = "openai-1.51.0.tar.gz", hash = "sha256:8dc4f9d75ccdd5466fc8c99a952186eddceb9fd6ba694044773f3736a847149d"},
+]
+
+[package.dependencies]
+anyio = ">=3.5.0,<5"
+distro = ">=1.7.0,<2"
+httpx = ">=0.23.0,<1"
+jiter = ">=0.4.0,<1"
+pydantic = ">=1.9.0,<3"
+sniffio = "*"
+tqdm = ">4"
+typing-extensions = ">=4.11,<5"
+
+[package.extras]
+datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+
+[[package]]
 name = "orjson"
 version = "3.10.7"
 description = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
@@ -2240,4 +2264,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "9de60b63e772197b7c820aac76c1ad02782506978202932334d34f1d805d3ab8"
+content-hash = "fea81ccdfa0b8c6e6ef419283539b2683374f5bf4f3310feaeef43fab6fe490d"
