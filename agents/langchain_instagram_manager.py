@@ -3,7 +3,7 @@ from datetime import datetime
 import os
 from typing import List, Literal
 
-from dendrite_sdk import Dendrite
+from dendrite import Dendrite
 
 from dotenv import load_dotenv
 from pydantic import BaseModel

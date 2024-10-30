@@ -1,4 +1,4 @@
-from dendrite_sdk import Dendrite
+from dendrite import Dendrite
 
 # Get your Dendrite API key from dendrite.systems
 DENDRITE_API_KEY = "..."

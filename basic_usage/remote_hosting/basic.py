@@ -1,5 +1,5 @@
-# from dendrite_sdk import Dendrite
-from dendrite_sdk.sync_api.ext.browserbase import BrowserbaseBrowser
+# from dendrite import Dendrite
+from dendrite.sync_api.ext.browserbase import BrowserbaseBrowser
 
 ...
 

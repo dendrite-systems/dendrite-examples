@@ -1,5 +1,5 @@
-from dendrite_sdk import Dendrite
-from dendrite_sdk.exceptions import DendriteException
+from dendrite import Dendrite
+from dendrite.exceptions import DendriteException
 from dotenv import load_dotenv
 
 load_dotenv()

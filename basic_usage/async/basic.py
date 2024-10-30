@@ -1,5 +1,5 @@
 import asyncio
-from dendrite_sdk.async_api import AsyncDendrite
+from dendrite.async_api import AsyncDendrite
 from dotenv import load_dotenv
 
 load_dotenv()

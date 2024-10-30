@@ -1,4 +1,4 @@
-from dendrite_sdk import Dendrite
+from dendrite import Dendrite
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,3 +12,4 @@ client.goto("https://google.com")
 # Populate the search field and press Enter key
 client.fill("Search input field", "hello world")
 client.press("Enter")
+
