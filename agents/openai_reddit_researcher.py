@@ -7,7 +7,7 @@
 # enabling automated research on any topic using Reddit.
 
 import json
-from dendrite_sdk import Dendrite
+from dendrite import Dendrite
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
 from openai import OpenAI

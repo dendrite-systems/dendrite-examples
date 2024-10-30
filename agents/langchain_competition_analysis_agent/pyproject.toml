@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "langchain-docs-agent-example"
+version = "0.1.0"
+description = ""
+authors = ["charlesmaddock <charles@digitalungdom.se>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+langchain = "^0.3.3"
+langchain-openai = "^0.2.2"
+dendrite-sdk = "^0.2.1"
+streamlit = "^1.39.0"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

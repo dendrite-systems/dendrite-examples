@@ -12,7 +12,7 @@ import asyncio
 from openai import OpenAI
 from openai.types.chat import ChatCompletionUserMessageParam
 
-from dendrite_sdk import AsyncDendrite
+from dendrite import AsyncDendrite
 
 
 def ai_request(prompt: str):

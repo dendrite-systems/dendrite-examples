@@ -1,7 +1,8 @@
-from dendrite_sdk import Dendrite
+from dendrite import Dendrite
 from dotenv import load_dotenv
 
 load_dotenv()
+
 
 def get_visitor_count() -> int:
     client = Dendrite(auth="analytics.google.com")

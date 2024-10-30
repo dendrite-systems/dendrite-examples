@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "openai_github_startgazers_analyser"
+version = "0.1.0"
+description = ""
+authors = ["charlesmaddock <charles@digitalungdom.se>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.9^"
+dendrite = {path = "/Users/charlesmaddock/Projects/dendrite/dendrite-python-sdk", develop = true}
+openai = "^1.52.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

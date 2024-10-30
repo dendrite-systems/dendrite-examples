@@ -1,18 +1,21 @@
-from dendrite_sdk import Dendrite
+from dendrite import Dendrite
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
 load_dotenv()
 
+
 # Define Pydantic models
 class Startup(BaseModel):
-  name: str
-  location: str
-  description: str
-  url: str
+    name: str
+    location: str
+    description: str
+    url: str
+
 
 class Startups(BaseModel):
-  items: list[Startup]
+    items: list[Startup]
+
 
 # Initiate Dendrite instance
 client = Dendrite()
@@ -26,4 +29,3 @@ client.press("Enter")
 startups = client.extract("", Startups)
 
 print(startups.items)
-
