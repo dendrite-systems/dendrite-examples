@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-dendrite = {path = "/Users/charlesmaddock/Projects/dendrite/dendrite-python-sdk", develop = true}
+dendrite = "^0.2.5"
 swarm = {git = "https://github.com/openai/swarm.git"}
 
 

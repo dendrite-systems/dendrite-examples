@@ -113,16 +113,17 @@ class GetStargazersTool:
                     StarGazer,
                 )
                 new_star_gazers[url] = info.model_dump()
+                all_star_gazers[url] = info.model_dump()
                 save_cached_data(all_star_gazers)
                 await tab.close()
 
         async with AsyncDendrite(auth="github.com") as client:
             await client.goto(star_gazers_url)
-            all_urls = await client.extract("Get the URLS of every star gazer")
-
+            all_urls = await client.extract(
+                "Get the URLS of every stargazer as an array of strings"
+            )
             # Only look at new URLs that we haven't seen before and process them 10 at a time
             new_urls = [url for url in all_urls if url not in fetched_users]
-            print(f"Processing new URLs: {new_urls}")
             await asyncio.gather(
                 *[open_stargazer_in_tab(url, client) for url in new_urls]
             )
@@ -161,18 +162,13 @@ class SendEmailTool:
     async def execute(email_address: str, subject: str, body: str) -> str:
         client = AsyncDendrite(auth="outlook.live.com")
 
-        # Navigate and check for successful authentication
         await client.goto("https://outlook.live.com/mail/0/")
-
-        # Create new email and populate fields
-        await client.click("the new email btn")
-        await client.fill("the_email_recipient_input", email_address)
+        await client.click("The new email button")
+        await client.fill("to_field", email_address)
         await client.press("Enter")
-        await client.fill("the_email_subject_input", subject)
-        await client.fill("the_email_body_input", body)
-
-        # Send email
-        await client.click("the send btn")
+        await client.fill("subject_field", subject)
+        await client.fill("body_field", body)
+        await client.click("The send button")
 
         return "Email sent successfully"
 

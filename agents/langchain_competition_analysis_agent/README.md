@@ -93,7 +93,7 @@ async def send_email(email_address: str, subject: str, body: str):
 
 5. **Try it out**, try sending the message:
    ```bash
-   Hi, I'm building an AI tool called FooBar. Please find any new potential competitors and summarise them.
+   Hi, I'm building an AI tool called FooBar that is a coding AI assistant. Please find any new potential competitors and summarise them.
    ```
 
    To send emails, your agent needs to be authorized to use your Outlook account first. Here's how:
@@ -106,7 +106,7 @@ async def send_email(email_address: str, subject: str, body: str):
    You should now be able to prompt the following:
    
    ```bash
-   Hi, I'm building an AI tool called FooBar. Please find any new potential competitors and summarise them. Send the summaries to me via [enter email here].
+   Hi, I'm building an AI tool called FooBar that is a coding AI assistant. Please find any new potential competitors and summarise them. Send the summaries to me via [enter email here].
    ```
 
 <br /><br />

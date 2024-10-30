@@ -6,8 +6,8 @@ authors = ["charlesmaddock <charles@digitalungdom.se>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.9^"
-dendrite = {path = "/Users/charlesmaddock/Projects/dendrite/dendrite-python-sdk", develop = true}
+python = "^3.9"
+dendrite = "^0.2.5"
 openai = "^1.52.2"
 
 

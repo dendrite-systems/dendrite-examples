@@ -1,4 +1,5 @@
 import asyncio
+from pathlib import Path
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 
@@ -11,8 +12,9 @@ from tools.producthunt import get_all_product_hunt_posts, read_more_product_hunt
 from tools.hackernews import get_all_hackernews_posts, read_more_hackernews
 
 
-env_path = find_dotenv()
-load_dotenv(env_path)
+current_file_path = Path(__file__).resolve()
+env_path = current_file_path.parent / ".env"
+load_dotenv(env_path, override=True)
 
 tools = [
     get_all_product_hunt_posts,

@@ -8,8 +8,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"
-# dendrite-sdk = "^0.2.0"
-dendrite = {path = "/Users/charlesmaddock/Projects/dendrite/dendrite-python-sdk", develop = true}
+dendrite = "^0.2.5"
 python-dotenv = "^1.0.1"
 pydantic = "^2.9.2"
 asyncio = "^3.4.3"
