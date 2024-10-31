@@ -1,7 +1,8 @@
-![Dendrite Demo (1)](https://github.com/user-attachments/assets/ac96d6d1-29c0-4680-8168-08440a862d24)
+![Stargazers Demo](https://github.com/user-attachments/assets/2eeb3db5-fdc5-4b17-9f8f-d1a89d677183)
 
 
-https://github.com/user-attachments/assets/97d1b506-97b6-401a-98d7-3153dd6d3918
+https://github.com/user-attachments/assets/bcaf857b-789d-4bfc-a420-4e5cb4a93162
+
 
 ***
 
