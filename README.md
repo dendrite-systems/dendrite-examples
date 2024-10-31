@@ -6,13 +6,13 @@
 
 This repository has a wide variety of example code using Dendrite that you can try out of the box.
 
-## Usage 
+## Simple Dendrite Example 
 
 ```python
-# Initate the Dendrite client
+# Start the Dendrite browser
 browser = Dendrite()
 
-# Navigate with the `goto` method
+# Navigate to google
 browser.goto("https://google.com")
 
 try:
@@ -20,7 +20,7 @@ try:
 except DendriteException:
     print("No reject all cookies button found")
 
-# Populate the search field and press Enter key
+# Google search "hello world"
 browser.fill("Search input field", "hello world")
 browser.press("Enter")
 
