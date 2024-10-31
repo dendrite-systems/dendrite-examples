@@ -1,11 +1,12 @@
-![Dendrite Demo (1)](https://github.com/user-attachments/assets/ac96d6d1-29c0-4680-8168-08440a862d24)
+![Stargazers Demo](https://github.com/user-attachments/assets/2eeb3db5-fdc5-4b17-9f8f-d1a89d677183)
 
 
-https://github.com/user-attachments/assets/97d1b506-97b6-401a-98d7-3153dd6d3918
+https://github.com/user-attachments/assets/bcaf857b-789d-4bfc-a420-4e5cb4a93162
+
 
 ***
 
-This example repo contains a simple [LangChain](https://github.com/langchain-ai/langchain/tree/master) AI agent that can analyze GitHub stargazers using the [Dendrite Browser SDK](https://github.com/dendrite-systems/dendrite-python-sdk). The agent can identify potential candidates for hiring or user interviews based on their GitHub profiles and repositories.
+This example repo contains an AI agent that can use the OpenAI SDK to analyze and reach out to GitHub stargazers using the [Dendrite Browser SDK](https://github.com/dendrite-systems/dendrite-python-sdk). The agent can identify potential candidates for hiring or user interviews based on their GitHub profiles and repositories.
 
 <br /><br />
 ## Overview/Features
@@ -97,17 +98,19 @@ async def get_stargazers(star_gazers_url: str) -> str:
    Hi, please analyze the stargazers for https://github.com/your-repo and find promising candidates for interviews.
    ```
 
+   The agent will use the correct tool to get the stargazers.
+
    To send outreach emails, your agent needs to be authorized to use your Outlook account first. Here's how:
    
    1. Install the [Dendrite Vault Chrome Extension](https://chromewebstore.google.com/detail/dendrite-vault/faflkoombjlhkgieldilpijjnblgabnn)
-   2. Log into Outlook in your browser
+   2. Log into Outlook in your own browser
    3. Open the Dendrite vault extension
    4. Press "Authenticate on outlook.com"
 
    You can then try:
    
    ```bash
-   Hi, please analyze the stargazers for https://github.com/your-repo and draft outreach emails for the most promising candidates. Send them to [enter email here].
+   Hi, please analyze the stargazers for https://github.com/your-repo and draft outreach emails for the most promising candidates. Show them to me and I'll tell you who to reach out to.
    ```
 
 <br /><br />
