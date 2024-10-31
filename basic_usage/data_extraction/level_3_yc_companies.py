@@ -1,6 +1,6 @@
 import asyncio
 from pydantic import BaseModel
-from dendrite.async_api import AsyncDendrite
+from dendrite import AsyncDendrite
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,33 +21,41 @@ class Company(BaseModel):
     founders: list[Founder]
 
 
-# Extract company info function
-async def extract_info(client: "AsyncDendrite", url):
+# Extract company info from tab
+async def extract_info(browser: "AsyncDendrite", url):
     # Open the URL in a new tab and extract company info
-    page = await client.new_tab(url)
-    company_info = await client.extract("The company info", type_spec=Company)
+    tab = await browser.new_tab(url)
+    company_info = await tab.extract("The company info ", type_spec=Company)
 
     # Close tab and return info
-    await page.close()
+    await tab.close()
     return company_info
 
 
 # Main function (asynchronous)
 async def main():
-    # Initiate async Dendrite client
-    client = AsyncDendrite()
+    # Initiate async Dendrite browser
+    browser = AsyncDendrite()
+
+    # Create semaphore to limit the amount of visited page at a time to 10
+    semaphore = asyncio.Semaphore(10)
+
+    async def bounded_extract(url):
+        async with semaphore:
+            return await extract_info(browser, url)
 
     # Go to YC and search for AI agent companies
-    await client.goto("https://ycombinator.com/companies")
-    await client.fill("Search field", value="AI agent")
+    await browser.goto("https://ycombinator.com/companies")
+    await browser.fill("Search field", value="AI agent")
 
     # Extract the urls of the resulting list
-    urls = await client.extract(
+    urls = await browser.extract(
         "The URLs of each listed startup. Return this format: list[str]"
     )
 
     # Go to each URL concurrently in different tabs and extract company info
-    tasks = [extract_info(client, url) for url in urls]
+    # Now using bounded_extract instead of extract_info directly
+    tasks = [bounded_extract(url) for url in urls]
     companies = await asyncio.gather(*tasks)
 
     # Do something with the extracted company info

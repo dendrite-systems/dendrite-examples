@@ -18,14 +18,14 @@ class Startups(BaseModel):
 
 
 # Initiate Dendrite instance
-client = Dendrite()
+browser = Dendrite()
 
 # Navigate and interact with search field
-client.goto("https://www.ycombinator.com/companies")
-client.fill("Search field", value="AI agent")
-client.press("Enter")
+browser.goto("https://www.ycombinator.com/companies")
+browser.fill("Search field", value="AI agent")
+browser.press("Enter")
 
 # Extract startups with structured output with Pydantic model
-startups = client.extract("", Startups)
+startups = browser.extract("", Startups)
 
 print(startups.items)

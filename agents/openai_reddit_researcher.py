@@ -11,6 +11,7 @@ from dendrite import Dendrite
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
 from openai import OpenAI
+import re
 
 
 load_dotenv()
@@ -20,32 +21,40 @@ load_dotenv()
 def ai(prompt: str, output_json: bool = False):
     openai = OpenAI()
     if output_json:
-        prompt += "\n\nYour output must be valid JSON that can be parsed with json.loads([your output]). No '```json'."
+        prompt += "\n\nYour output must be contain valid JSON wrapped in a json code block. E.g ```json\n[your output]\n```"
     messages = [{"role": "user", "content": prompt}]
-    oai_res = openai.chat.completions.create(messages=messages, model="gpt-4o")
-    if oai_res.choices[0].message.content:
+    oai_res = openai.chat.completions.create(
+        messages=messages,  # type: ignore
+        model="gpt-4o",
+    )
+    message = oai_res.choices[0].message.content
+    print("\n\n========= AI message =========\n", message, "\n================")
+    if message:
         if output_json:
-            return json.loads(oai_res.choices[0].message.content)
-        return oai_res.choices[0].message.content
+            # Find JSON content between ```json and ``` markers, or fall back to the entire content
+            json_match = re.search(r"```json\s*(.*?)\s*```", message, re.DOTALL)
+            content_to_parse = json_match.group(1) if json_match else message
+            return json.loads(content_to_parse)
+        return message
     raise Exception("Failed to get successful response from Open AI.")
 
 
 # This function uses Dendrite to search for posts on reddit and summerize them based of a given topic
 def search_and_summarize_reddit(topic_to_research: str):
-    client = Dendrite()
+    browser = Dendrite()
 
     # Generate search query from the user's topic
     search_query = ai(
         f"Generate a simple reddit search query for this research topic: '{topic_to_research}'"
-        + "Output should be only be 1-3 keywords and nothing else."
+        + "Output should be only be 1-3 keywords and nothing else. No quotes."
     )
 
     # Navigate to the search result page
     url = f"https://www.reddit.com/search/?q={quote_plus(search_query)}"
-    client.goto(url)
+    browser.goto(url)
 
     # Extract search results
-    search_data = client.extract(
+    search_data = browser.extract(
         "Get a list of dicts like so {subreddit: str, comment_amount: str, title: str, upvotes: str, url: str}"
     )
 
@@ -58,7 +67,7 @@ def search_and_summarize_reddit(topic_to_research: str):
     # Extract the content from each post with Dendrite by opening several tabs
     posts = ""
     for url in urls:
-        tab = client.new_tab(url)
+        tab = browser.new_tab(url)
         post_data = tab.extract(
             "get the text content from the post and all the comments."
         )
@@ -75,7 +84,7 @@ def search_and_summarize_reddit(topic_to_research: str):
     return summary
 
 
+# Uses Dendrite to search Reddit and summarize the results
 summary = search_and_summarize_reddit(
     "What are people's opinions on CrewAI? Do people like it?"
 )
-print(summary)

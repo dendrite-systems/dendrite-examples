@@ -4,15 +4,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def send_email(to, subject, message):
-    client = Dendrite(auth="outlook.live.com")
+# Initiate the Dendrite browser autenticated on outlook.live.com.
+# Read how create authentication sessions here: https://docs.dendrite.systems/concepts/authentication
+browser = Dendrite(auth="outlook.live.com")
 
-    # Navigate and check for successful authentication
-    client.goto("https://outlook.live.com/mail/0/", expected_page="An email inbox")
+# Navigate and check for successful authentication
+browser.goto("https://outlook.live.com/mail/0/")
 
-    # Create new email and populate fields
-    client.click("The new email button")
-    client.fill_fields({"Recipient": to, "Subject": subject, "Message": message})
+# Create new email and populate fields
+browser.click("The new email button")
+browser.fill("Recipient", "test@dendrite.systems")
+browser.press("Enter")
+browser.fill_fields({"Subject": "mock", "Message": "mock"})
 
-    # Send email
-    client.click("The send button")
+input("Are you ready to send the email?")
+# Send email
+browser.click("The send button")
+browser.close()

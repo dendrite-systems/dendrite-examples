@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Initiate client with authenticated session
+# Initiate client with authenticated session, read how create authentication sessions here: https://docs.dendrite.systems/concepts/authentication
 client = Dendrite(auth="mail.google.com")
 
 # Go to website with authenticated session

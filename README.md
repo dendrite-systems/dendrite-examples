@@ -6,6 +6,29 @@
 
 This repository has a wide variety of example code using Dendrite that you can try out of the box.
 
+## Usage 
+
+```python
+# Initate the Dendrite client
+browser = Dendrite()
+
+# Navigate with the `goto` method
+browser.goto("https://google.com")
+
+try:
+    browser.click("Reject all cookies")
+except DendriteException:
+    print("No reject all cookies button found")
+
+# Populate the search field and press Enter key
+browser.fill("Search input field", "hello world")
+browser.press("Enter")
+
+# Extract the search results as a list of dicts with url and title
+results = browser.extract("The search results as a list of dicts with url and title")
+print(results)
+```
+
 ## Quickstart
 
 Let's get started. First, we're going to install the required packages.

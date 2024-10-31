@@ -39,13 +39,13 @@ This is how easy it is to authenticate and send an email with Dendrite:
 @tool
 async def send_email(email_address: str, subject: str, body: str):
     """This tool sends an email to the provided email address with the provided subject and body. Don't use markdown in the body."""
-    async with AsyncDendrite(auth="outlook.live.com") as client:
-        await client.goto("https://outlook.live.com/mail/0/")
-        await client.click("the new email button")
-        await client.fill_fields(
+    async with AsyncDendrite(auth="outlook.live.com") as browser:
+        await browser.goto("https://outlook.live.com/mail/0/")
+        await browser.click("the new email button")
+        await browser.fill_fields(
             {"to_field": email_address, "subject_field": subject, "body_field": body}
         )
-        await client.click("the send email button")
+        await browser.click("the send email button")
 
 ```
 
@@ -112,7 +112,7 @@ async def send_email(email_address: str, subject: str, body: str):
 <br /><br />
 ## Why is Dendrite so slow the first time I run a tool, and then so fast?
 
-It's because the first time you call `client.extract("get all the product hunt posts")` our coding agents need to generate a script to fetch the products from the HTML.
+It's because the first time you call `browser.extract("get all the product hunt posts")` our coding agents need to generate a script to fetch the products from the HTML.
 
 The next time you call the same prompt (and the website structure hasn't changed), the same script will be re-used – instantly returning the data.
 
