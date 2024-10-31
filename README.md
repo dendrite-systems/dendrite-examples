@@ -59,7 +59,9 @@ poetry run dendrite install
 
 #### Environment variables
 
-Finally, we need to add our API keys. Copy the `.env.examples` file in the root directory and rename it to `.env`. Fill in your Dendrite API key, you can [get your API key here](https://dendrite.systems/app). Some examples use an Anthropic API key to run an agent, but the plain Dendrite examples don't require it.
+Finally, you'll need a Dendrite API key, you can [get your API key here](https://dendrite.systems/app). 
+
+Some examples require more API keys, like Anthropic, to run correctly. See the `.env.examples` file in the root directory for reference on which keys you'll need.
 
 ## Try it Out!
 
